@@ -565,7 +565,7 @@ function SceneCollab() {
 function CollabBody() {
   const { local } = useScene();
   const split = Easing.outCubic(clamp((local - 1.5) / 2.2, 0, 1));
-  const perryPct = split * 0.80;
+  const perryPct = split * 0.88;
   const counselPct = 1 - perryPct;
   const barW = 1240, barX = (1920 - barW) / 2;
   const labels = Easing.outCubic(clamp((local - 2.4) / 0.7, 0, 1));
