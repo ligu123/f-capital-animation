@@ -365,7 +365,8 @@ function SceneCost() {
 }
 function CostBody() {
   const { local } = useScene();
-  const prog = Easing.outCubic(clamp((local - 1.0) / 4.2, 0, 1));
+  const elapsed = Math.max(0, local - 1.0);
+  const prog = Easing.outCubic(elapsed / 4.2);
   const value = Math.round(prog * 260000);
   const display = '\u00a3' + value.toLocaleString('en-GB');
   return (
@@ -384,7 +385,7 @@ function CostBody() {
         <Rise at={0.6} y={18}><div style={{ fontFamily: SANS, fontSize: 16, letterSpacing: '0.2em', textTransform: 'uppercase', color: MUTE, marginBottom: 18 }}>Outside counsel &middot; last year</div></Rise>
         <div style={{ fontFamily: SANS, fontSize: 132, fontWeight: 600, color: CLAY, letterSpacing: '-0.03em', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{display}</div>
         <div style={{ height: 4, background: FAINT, borderRadius: 2, marginTop: 30, marginLeft: 'auto', width: '100%', overflow: 'hidden' }}>
-          <div style={{ height: '100%', width: `${prog * 100}%`, background: CLAY, borderRadius: 2 }} />
+          <div style={{ height: '100%', width: `${clamp(prog, 0, 1) * 100}%`, background: CLAY, borderRadius: 2 }} />
         </div>
       </div>
       <div style={{ position: 'absolute', bottom: 96, left: 0, right: 0, textAlign: 'center', padding: '0 200px' }}>
