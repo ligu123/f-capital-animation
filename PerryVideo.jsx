@@ -417,11 +417,7 @@ function SceneKnowledge() {
 function KnowledgeBody() {
   const { local } = useScene();
   const leave = Easing.inCubic(clamp((local - 4.6) / 2.0, 0, 1));
-  const leadNode = NODES[0];
-  const lx = leadNode.x + leave * 520;
-  const ly = leadNode.y - leave * 240;
   const dim = 1 - leave * 0.78;
-  const pos = id => id === 0 ? { x: lx, y: ly } : { x: NODES[id].x, y: NODES[id].y };
   const VW = 1040, VH = 520, OX = (1920 - VW) / 2, OY = 250;
   return (
     <React.Fragment>
@@ -431,19 +427,18 @@ function KnowledgeBody() {
       <div style={{ position: 'absolute', left: OX, top: OY, width: VW, height: VH }}>
         <svg width={VW} height={VH} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
           {EDGES.map(([a, b], i) => {
-            const pa = pos(a), pb = pos(b);
+            const pa = NODES[a], pb = NODES[b];
             const conn = a === 0 || b === 0;
             const appear = clamp((local - 0.6 - i * 0.08) / 0.5, 0, 1);
             return <line key={i} x1={pa.x} y1={pa.y} x2={pb.x} y2={pb.y} stroke={INK} strokeWidth="1.2" strokeOpacity={appear * 0.4 * (conn ? dim : 1)} />;
           })}
         </svg>
         {NODES.map(n => {
-          const p = pos(n.id);
           const appear = clamp((local - 0.4 - n.id * 0.07) / 0.5, 0, 1);
           const isLead = n.lead;
-          const op = appear * (isLead ? (1 - leave * 0.65) : (n.id === 0 ? 1 : dim));
+          const op = appear * (isLead ? (1 - leave) : dim);
           return (
-            <div key={n.id} style={{ position: 'absolute', left: p.x, top: p.y, transform: 'translate(-50%,-50%)', opacity: op, textAlign: 'center' }}>
+            <div key={n.id} style={{ position: 'absolute', left: n.x, top: n.y, transform: 'translate(-50%,-50%)', opacity: op, textAlign: 'center' }}>
               <div style={{ width: n.r * 2, height: n.r * 2, borderRadius: '50%', background: isLead ? CLAY : INK, margin: '0 auto', boxShadow: isLead ? `0 0 22px ${CLAY}` : `0 0 14px rgba(12,17,22,0.12)` }} />
               <div style={{ fontFamily: SANS, fontSize: 14, color: isLead ? INK : MUTE, marginTop: 12, whiteSpace: 'pre-line', lineHeight: 1.3, letterSpacing: '0.01em', maxWidth: 180 }}>{n.label}</div>
             </div>
