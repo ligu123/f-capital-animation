@@ -269,7 +269,7 @@ function Boundary({ x, w, label, sub, broken, color }) {
   );
 }
 function SceneSecurity() {
-  return <Scene from={6.2} to={15.4}><SecurityBody /></Scene>;
+  return <Scene from={23.0} to={32.2}><SecurityBody /></Scene>;
 }
 function SecurityBody() {
   const { local } = useScene();
@@ -277,7 +277,7 @@ function SecurityBody() {
   return (
     <React.Fragment>
       <div style={{ position: 'absolute', top: 96, left: 0, right: 0, textAlign: 'center' }}>
-        <Kicker at={0.1} color={CLAY}>Risk 01 - Data security</Kicker>
+        <Kicker at={0.1} color={CLAY}>Risk 03 - Data security</Kicker>
       </div>
       <Boundary x={150} w={470} label="Your fund" sub={leaving ? 'left unguarded' : 'where it should stay'} broken={leaving} color={leaving ? CLAY : INK} />
       <Boundary x={1300} w={470} label="Outside counsel" sub="inboxes &middot; servers &middot; laptops" broken={false} color={MUTE} />
@@ -316,13 +316,13 @@ function FirmCard({ firm, verdict, tone, at }) {
   );
 }
 function SceneFragmented() {
-  return <Scene from={15.4} to={23.6}><FragmentedBody /></Scene>;
+  return <Scene from={32.2} to={40.4}><FragmentedBody /></Scene>;
 }
 function FragmentedBody() {
   return (
     <React.Fragment>
       <div style={{ position: 'absolute', top: 96, left: 0, right: 0, textAlign: 'center' }}>
-        <Kicker at={0.1} color={CLAY}>Risk 02 - Fragmented counsel</Kicker>
+        <Kicker at={0.1} color={CLAY}>Risk 04 - Fragmented counsel</Kicker>
       </div>
       <div style={{ position: 'absolute', top: 196, left: 0, right: 0, textAlign: 'center', padding: '0 200px' }}>
         <Rise at={0.5} y={18}>
@@ -361,7 +361,7 @@ function CostLine({ label, amount, at }) {
   );
 }
 function SceneCost() {
-  return <Scene from={23.6} to={32.6}><CostBody /></Scene>;
+  return <Scene from={6.2} to={15.2}><CostBody /></Scene>;
 }
 function CostBody() {
   const { local } = useScene();
@@ -371,7 +371,7 @@ function CostBody() {
   return (
     <React.Fragment>
       <div style={{ position: 'absolute', top: 96, left: 0, right: 0, textAlign: 'center' }}>
-        <Kicker at={0.1} color={CLAY}>Risk 03 - Spiraling legal spend</Kicker>
+        <Kicker at={0.1} color={CLAY}>Risk 01 - Spiraling legal spend</Kicker>
       </div>
       <div style={{ position: 'absolute', left: 190, top: 280, width: 640 }}>
         <CostLine label="Reviewed a 2-page NDA" amount="+ &pound;1,400" at={1.2} />
@@ -411,7 +411,7 @@ const NODES = [
 ];
 const EDGES = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [1, 2], [3, 5], [4, 6]];
 function SceneKnowledge() {
-  return <Scene from={32.6} to={40.4}><KnowledgeBody /></Scene>;
+  return <Scene from={15.2} to={23.0}><KnowledgeBody /></Scene>;
 }
 function KnowledgeBody() {
   const { local } = useScene();
@@ -425,7 +425,7 @@ function KnowledgeBody() {
   return (
     <React.Fragment>
       <div style={{ position: 'absolute', top: 96, left: 0, right: 0, textAlign: 'center' }}>
-        <Kicker at={0.1} color={CLAY}>Risk 04 - Institutional knowledge</Kicker>
+        <Kicker at={0.1} color={CLAY}>Risk 02 - Institutional knowledge</Kicker>
       </div>
       <div style={{ position: 'absolute', left: OX, top: OY, width: VW, height: VH }}>
         <svg width={VW} height={VH} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
@@ -635,10 +635,10 @@ function PerryVideo() {
     <Stage width={1920} height={1080} duration={71} background={BG}>
       <Atmosphere />
       <SceneOpen />
-      <SceneSecurity />
-      <SceneFragmented />
       <SceneCost />
       <SceneKnowledge />
+      <SceneSecurity />
+      <SceneFragmented />
       <SceneTurn />
       <ScenePerry />
       <SceneCollab />
