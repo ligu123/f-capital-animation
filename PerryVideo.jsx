@@ -416,7 +416,7 @@ function SceneKnowledge() {
 }
 function KnowledgeBody() {
   const { local } = useScene();
-  const leave = Easing.inCubic(clamp((local - 2.0) / 2.0, 0, 1));
+  const leave = Easing.inCubic(clamp((local - 1.0) / 2.0, 0, 1));
   const VW = 1040, VH = 520, OX = (1920 - VW) / 2, OY = 250;
   return (
     <React.Fragment>
